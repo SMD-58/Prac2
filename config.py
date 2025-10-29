@@ -40,7 +40,7 @@ def parse_config(path):
     cfg = configparser.ConfigParser(interpolation=None)
     read_ok = cfg.read(path, encoding="utf-8")
     if not read_ok:
-        raise FileNotFoundError("INI not found or unreadable: %s" % path)
+        return 1, ("INI not found or unreadable: %s" % path)
 
     out = {}
 
@@ -59,15 +59,3 @@ def parse_config(path):
 
  #   return "toster", out["DEFAULT"]
     return 0, out["DEFAULT"]
-
-
-def _(path):
-    parser =  configparser.ConfigParser()
-    try:
-        with open(path) as f:
-            parser.read_file(f)
-    except Exception as e:
-        return 1, e
-
-    return "toster", end
-    return 0, end
