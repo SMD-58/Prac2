@@ -1,14 +1,15 @@
 from pathlib import Path
-from config import parse_config
+from Utils.config import parse_config
 import os
-from PackageUtils import load_package_gz, load_packages
-from GraphUtils import make_graph, make_reverse_graph
+from Utils.PackageUtils import load_package_gz, load_packages
+from Utils.GraphUtils import make_graph, make_reverse_graph
+from Utils.pumlUtils  import to_plantuml, text_to_plantuml
 
 FIRST = Path("./Initializations/first.ini")
 TOSTER1 = Path("./Initializations/toster.ini")
 TOSTER2 = Path("./Initializations/toster1.ini")
 
-initial_path = TOSTER2
+initial_path = FIRST
 UBUNTU = "jammy"
 COMP = "main"
 
@@ -30,6 +31,7 @@ if __name__ == "__main__":
             path = args["repository_path"]
             mode = args["mode"]
             vers = args["package_ver"]
+            res_path = Path(args["result_path"] + "/" + f"{name}_{vers}.svg")
             depth = args["max_depth"]
             file = f'{UBUNTU}_{COMP}_Package.gz'
 
@@ -59,4 +61,5 @@ if __name__ == "__main__":
                     case _:
                         graph = "Unknown mode"
 
-            print(graph)
+            text = to_plantuml(graph, name)
+            text_to_plantuml(text, res_path)
