@@ -1,0 +1,3 @@
+debtree jq | dot -Tsvg -o ./SVGs/jq_TEST.svg
+
+apt-cache dotty jq | dot -Tsvg -o ./SVGs/jq_full.svg
