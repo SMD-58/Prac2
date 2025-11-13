@@ -23,12 +23,10 @@ def make_reverse_graph(pack, packages, de):
         if depth == 0:
             return
         graph[name] = set()
-        d = packages.get(name, False)
-        if d:
-            for dep in d.get("dependencies", set()):
-                if dep not in graph:
-                    dfs(dep, depth-1)
-                graph[name].add(dep)
+        for dep in sorte.get(name, set()):
+            if dep not in graph:
+                dfs(dep, depth-1)
+            graph[name].add(dep)
 
     graph = {}
     dfs(pack, de)

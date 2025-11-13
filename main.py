@@ -9,7 +9,7 @@ FIRST = Path("./Initializations/first.ini")
 TOSTER1 = Path("./Initializations/toster.ini")
 TOSTER2 = Path("./Initializations/toster1.ini")
 
-initial_path = FIRST
+initial_path = TOSTER1
 UBUNTU = "jammy"
 COMP = "main"
 
@@ -60,6 +60,6 @@ if __name__ == "__main__":
 
                     case _:
                         graph = "Unknown mode"
-
+                        
             text = to_plantuml(graph, name)
             text_to_plantuml(text, res_path)
